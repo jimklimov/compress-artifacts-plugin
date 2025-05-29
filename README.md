@@ -9,5 +9,6 @@ Artifacts produced before the plugin was installed/configured will not be compre
 
 ### Compatibility issues
 
-Some other plugins do not yet support nonstandard artifact storage.
-In particular, Copy Artifact will be broken. ([JENKINS-22637](https://issues.jenkins-ci.org/browse/JENKINS-22637))
+Some other plugins might not yet support what they see as nonstandard artifact storage (requiring use of Jenkins ArtifactManager API introduced in Jenkins 1.532).
+
+For an illustrative example, Copy Artifact was broken for several years on Jenkins controllers where this plugin was used, due to legacy use of direct file system access: [JENKINS-22637](https://issues.jenkins-ci.org/browse/JENKINS-22637) (fixed since 2018).
