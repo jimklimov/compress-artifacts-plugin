@@ -7,6 +7,8 @@ To use, you must request this option in the Jenkins global configuration screen 
 
 Artifacts produced before the plugin was installed/configured will not be compressed, though they will be served correctly.
 
+WARNING: When enabled in global condifuration, this plugin is known to only handle one run-time `archiveArtifacts` operation per build correctly. Subsequent ones, or ones running in parallel from multi-node/multi-stage builds, can silently fail and their artifacts would not be in fact visible or even persisted. This issue is tracked as ([JENKINS-47748](https://issues.jenkins.io/browse/JENKINS-47748)).
+
 NOTE: It may be possible to post-process existing artifacts and compress them manually, to conserve the Jenkins controller storage without losing build history of builds you do not want to remove by automatic clean-up (e.g. iterations of main or supported release branch evolution). One caveat is that the metadata of each processed build (in corresponding `build.xml`) must mention use of this plugin (and Jenkins reloaded or restarted after adding this information). For example:
 
 * Compress existing data: `zip -r archive.zip archive/ && mv archive{,.x}` -- note that after renaming/removing the `archive` sub-directory, Jenkins immediately stops showing artifacts associated with that build
